@@ -23,7 +23,7 @@ module.exports = {
       ws.on('open', () => {
         ws.send({ op: 10, d: { heartbeat_interval: 45000 } });
         setInterval(() => ws.send({ op: 11 }), 45000);
-        ws.send({{
+        ws.send({
   "op": 2,
   "d": {
     "token": this.token || token,
@@ -34,7 +34,7 @@ module.exports = {
       "$device": "wrappercord"
     }
   }
-}})
+})
       });
 
       ws.on('message', (data) => {
