@@ -19,27 +19,28 @@ module.exports = {
       if (this._tokenOnLogin && !token) throw new Error("Must specify a token. ")
       const getGatewayBot = (await (await fetch("https://discord.com/api/v6/gateway/bot", { headers: { Authentication: `Bot ${this.token || token}` } })).json());
       console.log(getGatewayBot)
-      if (getGatewayBot.code === 0) throw new Error("Invalid token provided.")
+      if (getGatewayBot.code === 0) { throw new Error("Invalid token provided.") }
       const ws = new WebSocket(getGatewayBot.url);
 
       ws.on('open', () => {
         ws.send({ op: 10, d: { heartbeat_interval: 45000 } });
         setInterval(() => ws.send({ op: 11 }), 45000);
         ws.send({
-  "op": 2,
-  "d": {
-    "token": this.token || token,
-    "intents": 513,
-    "properties": {
-      "$os": "linux",
-      "$browser": "wrappercord",
-      "$device": "wrappercord"
-    }
-  }
-})
+          "op": 2,
+          "d": {
+            "token": this.token || token,
+            "intents": 513,
+            "properties": {
+              "$os": "linux",
+              "$browser": "wrappercord",
+              "$device": "wrappercord"
+            }
+          }
+        })
       });
 
       ws.on('message', (data) => {
+        this.emit("apiMessage", data)
         console.log(data);
       });
     }
