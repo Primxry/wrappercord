@@ -4,7 +4,7 @@ const WebSocket = require("ws"),
 
 module.exports = {
   /** 
-   * The Client that you use for stuff idk
+   * The Client that you use.
    */
   Client: class extends EventEmitter {
     /*
