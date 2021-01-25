@@ -5,7 +5,7 @@ module.exports = {
   /** 
    * The Client that you use for stuff idk
    */
-  class Client extends EventEmitter {
+  Client: class extends EventEmitter {
     /*
      * @param {Object} [options] The options for this instance of the Client.
      */
