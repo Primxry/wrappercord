@@ -1,5 +1,6 @@
 const WebSocket = require("ws"),
-  fetch = require("node-fetch")
+  fetch = require("node-fetch"),
+  { EventEmitter } = require("events")
 
 module.exports = {
   /** 
