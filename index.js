@@ -11,9 +11,9 @@ module.exports = {
      * @param {Object} [options] The options for this instance of the Client.
      */
     constructor(options = { token: process.env.DISCORD_TOKEN }) {
+      super()
       if (options.token) this.token = options.token;
       else this._tokenOnLogin = true;
-      super()
     };
     async login (token) {
       if (this._tokenOnLogin && !token) throw new Error("Must specify a token. ")
