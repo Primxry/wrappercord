@@ -17,7 +17,7 @@ module.exports = {
     };
     async login (token) {
       if (this._tokenOnLogin && !token) throw new Error("Must specify a token. ")
-      const getGatewayBot = (await (await fetch("https://discord.com/api/v6/gateway/bot", { headers: { Authentication: `Bot ${this.token || token}` } })).json());
+      const getGatewayBot = (await (await fetch("https://discord.com/api/v6/gateway/bot", { headers: { Authentication: `${this.token || token}` } })).json());
       console.log(getGatewayBot)
       const ws = new WebSocket(getGatewayBot.url);
 
